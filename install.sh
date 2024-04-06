@@ -22,6 +22,7 @@ sdkmanager "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#
 avdmanager create avd --name 'Appium' --abi "google_apis/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
 
 `# https://appium.io/docs/en/2.0/quickstart/next-steps/`
-`# download and install appium-inspector or use web version`
-`# https://github.com/appium/appium-inspector#installation`
 brew install python # https://formulae.brew.sh/formula/python@3.11#default
+
+# download and install appium-inspector or use web version
+# https://github.com/appium/appium-inspector#installation

@@ -62,7 +62,8 @@ $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith
 ; if($?) { avdmanager create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P' }
 
 # https://appium.io/docs/en/2.0/quickstart/next-steps/
-# download and install appium-inspector or use web version # https://github.com/appium/appium-inspector#installation
 ; if($?) { choco install -y python3 --version 3.11.3 } # https://community.chocolatey.org/packages/python3/3.11.3
+
+# download and install appium-inspector or use web version # https://github.com/appium/appium-inspector#installation
 
 # https://adamtheautomator.com/how-to-sign-powershell-script/
