@@ -11,9 +11,9 @@ jobs:
         matrix:
           include:
             - os: windows-latest
-              script: install.ps1
+              script: powershell install.ps1
             - os: macos-latest
-              script: install.sh
+              script: bash install.sh
             # because these runners come with preinstalled tools,
             # we better test also on bare system images:
             # - mcr.microsoft.com/windows/nanoserver:ltsc2022
