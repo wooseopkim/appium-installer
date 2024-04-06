@@ -17,6 +17,7 @@ sudo npm i -g appium@next && \
 `# https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/`
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew tap homebrew/cask-versions && brew install --cask temurin8 `# https://adoptium.net/installation/` && \
+export ANDROID_SDK_ROOT=”/usr/local/share/android-sdk” && \
 sdkmanager "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` && \
 avdmanager create avd --name 'Appium' --abi "google_apis/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
 
