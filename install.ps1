@@ -36,7 +36,7 @@ else
     }
 
 $androidArch = 'x86_64'
-$androidSDkLevel = '33' # https://developer.android.com/tools/releases/platforms
+$androidSDkLevel = '35' # https://developer.android.com/tools/releases/platforms
 $androidPackage = "system-images;android-$androidSdkLevel;google_apis;$androidArch"
 
 # https://docs.chocolatey.org/en-us/choco/setup#install-with-powershell.exe
