@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ANDROID_ARCH='x86_64'
-if [[ -e 'arm64e' $(machine) ]]; then
+if [[ -e 'arm64e' $(uname -p) ]]; then
     ANDROID_ARCH='arm64-v8a'
 fi
 ANDROID_SDK_LEVEL='33' # https://developer.android.com/tools/releases/platforms
