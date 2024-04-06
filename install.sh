@@ -1,11 +1,11 @@
 #!/bin/sh
 
-ANDROID_ARCH = 'x86_64'
+ANDROID_ARCH='x86_64'
 if [[ -e 'arm64e' $(machine) ]]; then
-    ANDROID_ARCH = 'arm64-v8a'
+    ANDROID_ARCH='arm64-v8a'
 fi
-ANDROID_SDK_LEVEL = '33' # https://developer.android.com/tools/releases/platforms
-ANDROID_PACKAGE = "system-images;android-33;google_apis;$ANDROID_ARCH"
+ANDROID_SDK_LEVEL='33' # https://developer.android.com/tools/releases/platforms
+ANDROID_PACKAGE="system-images;android-33;google_apis;$ANDROID_ARCH"
 
 # https://brew.sh/#install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
