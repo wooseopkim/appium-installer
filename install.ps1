@@ -52,7 +52,7 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 ; if($?) { npm i -g appium@next }
 
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
-# ; if($?) { choco install -y androidstudio } # https://community.chocolatey.org/packages/AndroidStudio
+; if($?) { choco install -y gradle } # https://community.chocolatey.org/packages/gradle
 ; if($?) { choco install -y android-sdk } # https://community.chocolatey.org/packages/android-sdk
 ; if($?) { refreshenv }
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
