@@ -11,12 +11,12 @@ ANDROID_PACKAGE="system-images;android-33;google_apis;$ANDROID_ARCH"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
 
 # https://appium.io/docs/en/2.0/quickstart/install/
-&& brew install node@18 `# https://formulae.brew.sh/formula/node`` \
+&& brew install node@18 `# https://formulae.brew.sh/formula/node` \
 && sudo npm i -g appium@next \
 
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
 && brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` \
-&& brew tap homebrew/cask-versions && brew install --cask temurin8 \ # https://adoptium.net/installation/
+&& brew tap homebrew/cask-versions && brew install --cask temurin8 `# https://adoptium.net/installation/` \
 && sdkmanager "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` \
 && avdmanager create avd --name 'Appium' --abi "google_apis/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P"
 
