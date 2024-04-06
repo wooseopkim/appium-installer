@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - run: ./${{ matrix.script }}
+      - run: ${{ matrix.script }}
       
       - name: Check Appium
         run: appium --version
