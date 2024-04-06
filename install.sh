@@ -17,7 +17,7 @@ sudo npm i -g appium@next && \
 `# https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/`
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew tap homebrew/cask-versions && brew install --cask temurin8 `# https://adoptium.net/installation/` && \
-echo <<<-EOF>>~/.zshrc
+echo <<- EOF >> ~/.zshrc
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
