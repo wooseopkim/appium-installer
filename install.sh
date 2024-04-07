@@ -24,7 +24,6 @@ brew install node@18 `# https://formulae.brew.sh/formula/node` && \
 sudo npm i -g appium@next && \
 
 `# https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/`
-brew install gradle `# https://gist.github.com/patrickhammond/4ddbe49a67e5eb1b9c03` `# https://formulae.brew.sh/formula/gradle` && \
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew tap homebrew/cask-versions && brew install --cask temurin17 `# https://adoptium.net/installation/` && \
 ANDROID_SDK_ROOT=$HOME/Library/Android/sdk && \
