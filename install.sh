@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 ANDROID_ARCH='x86_64'
 if [ 'arm64e' = $(uname -p) ]; then
     ANDROID_ARCH='arm64-v8a'
