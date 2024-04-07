@@ -25,7 +25,7 @@ jobs:
       
       - run: ${{ matrix.script }}
 
-      - run: cat ~/.bashrc
+      - run: ls $ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 
       - name: Check Appium
         run: appium --version
