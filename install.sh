@@ -30,7 +30,6 @@ source ~/.bashrc && \
 touch ~/.android/repositories.cfg && \
 yes | sdkmanager --licenses && \
 sdkmanager --update && \
-sdkmanager --list && \
 sdkmanager --install "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` && \
 avdmanager create avd --name 'Appium' --abi "google_apis/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
 
