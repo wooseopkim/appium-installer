@@ -6,6 +6,10 @@ if [ 'arm64e' = $(uname -p) ]; then
 fi
 ANDROID_SDK_VERSION='34' # https://developer.android.com/tools/releases/platforms
 ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_VERSION;google_apis_playstore;$ANDROID_ARCH"
+RC_FILE='~/.zshrc'
+if [ $GITHUB_ACTIONS ]; then
+    RC_FILE='~/.bashrc'
+fi
 
 # https://brew.sh/#install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
@@ -25,8 +29,8 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools
-' >> ~/.bashrc && \
-source ~/.bashrc && \
+' >> $RC_FILE && \
+source $RC_FILE && \
 touch ~/.android/repositories.cfg && \
 yes | sdkmanager --licenses && \
 sdkmanager --update && \
