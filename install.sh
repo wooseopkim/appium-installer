@@ -11,6 +11,8 @@ if [ $GITHUB_ACTIONS ]; then
     RC_FILE='~/.bashrc'
 fi
 
+touch $RC_FILE
+
 # https://brew.sh/#install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
 
