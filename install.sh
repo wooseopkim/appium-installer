@@ -31,7 +31,7 @@ touch ~/.android/repositories.cfg && \
 yes | sdkmanager --licenses && \
 sdkmanager --update && \
 sdkmanager --install "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` && \
-avdmanager create avd --name 'Appium' --abi "google_apis/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
+avdmanager create avd --name 'Appium' --abi "google_apis_playstore/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
 
 `# https://appium.io/docs/en/2.0/quickstart/next-steps/`
 brew install python # https://formulae.brew.sh/formula/python@3.11#default
