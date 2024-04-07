@@ -11,20 +11,19 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-latest
+          - os: ubuntu-latest
             image: dockurr/windows:latest
             script: install.ps1
-          - os: macos-latest
+          - os: ubuntu-latest
             image: sickcodes/docker-osx:latest
             script: install.sh
     runs-on: ${{ matrix.os }}
     container:
       image: ${{ matrix.image }}
-      volumes: ${{ matrix.script }}:/${{ matrix.script }}
+      volumes: ./${{ matrix.script }}:/${{ matrix.script }}
     steps:
       - uses: actions/checkout@v3
-      
-      - run: chmod +x /${{ matrix.script }}
+
       - run: /${{ matrix.script }}
       
       - name: Check Appium
