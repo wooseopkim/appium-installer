@@ -5,7 +5,7 @@ if [ 'arm64e' = $(uname -p) ]; then
     ANDROID_ARCH='arm64-v8a'
 fi
 ANDROID_SDK_VERSION='35' # https://developer.android.com/tools/releases/platforms
-ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_VERSION;google_apis;$ANDROID_ARCH"
+ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_VERSION;google_apis_playstore;$ANDROID_ARCH"
 
 # https://brew.sh/#install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
@@ -19,14 +19,17 @@ brew install gradle `# https://gist.github.com/patrickhammond/4ddbe49a67e5eb1b9c
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew tap homebrew/cask-versions && brew install --cask temurin8 `# https://adoptium.net/installation/` && \
 echo '
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools
 ' >> ~/.bashrc && \
 source ~/.bashrc && \
+touch ~/.android/repositories.cfg && \
 yes | sdkmanager --licenses && \
+sdkmanager --update && \
 sdkmanager --list && \
 sdkmanager --install "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` && \
 avdmanager create avd --name 'Appium' --abi "google_apis/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
