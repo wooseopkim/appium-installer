@@ -36,8 +36,8 @@ else
     }
 
 $androidArch = 'x86_64'
-$androidSDkLevel = '35' # https://developer.android.com/tools/releases/platforms
-$androidPackage = "system-images;android-$androidSdkLevel;google_apis;$androidArch"
+$androidSDkVersion = '35.0.1' # https://developer.android.com/tools/releases/platforms
+$androidPackage = "system-images;android-$androidSdkVersion;google_apis;$androidArch"
 
 # https://docs.chocolatey.org/en-us/choco/setup#install-with-powershell.exe
 Set-ExecutionPolicy Bypass -Scope Process -Force
