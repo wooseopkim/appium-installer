@@ -39,6 +39,14 @@ $androidArch = 'x86_64'
 $androidSDkVersion = '34' # https://developer.android.com/tools/releases/platforms
 $androidPackage = "system-images;android-$androidSdkVersion;google_apis;$androidArch"
 
+function Add-Path {
+    param {
+        $Path
+    }
+
+    echo $Path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+}
+
 # https://docs.chocolatey.org/en-us/choco/setup#install-with-powershell.exe
 Set-ExecutionPolicy Bypass -Scope Process -Force
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
@@ -54,6 +62,13 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
 ; if($?) { choco install -y gradle } # https://community.chocolatey.org/packages/gradle
 ; if($?) { choco install -y android-sdk } # https://community.chocolatey.org/packages/android-sdk
+; if($?) { $AndroidSdkRoot =  }
+; if($?) { Add-Path $env:USERPROFILE/Library/Android/sdk }
+; if($?) { Add-Path $AndroidSdkRoot/cmdline-tools/latest/bin }
+; if($?) { Add-Path $AndroidSdkRoot/tools }
+; if($?) { Add-Path $AndroidSdkRoot/tools/bin }
+; if($?) { Add-Path $AndroidSdkRoot/platform-tools }
+; if($?) { Add-Path $AndroidSdkRoot/build-tools }
 ; if($?) { refreshenv }
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 ; if($?) { choco install -y Temurin17 --params="$temurinParams" } # https://community.chocolatey.org/packages/Temurin17
