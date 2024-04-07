@@ -72,7 +72,7 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 ; if($?) { choco install -y Temurin17 --params="$temurinParams" } # https://community.chocolatey.org/packages/Temurin17
 ; if($?) { refreshenv }
-; if($?) { echo y | sdkmanager $androidPackage }
+; if($?) { echo y | sdkmanager "$androidPackage" }
 ; if($?) { avdmanager create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P' }
 
 # https://appium.io/docs/en/2.0/quickstart/next-steps/
