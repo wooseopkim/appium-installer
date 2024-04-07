@@ -8,10 +8,13 @@ if [ 'arm64e' = $(uname -p) ]; then
 fi
 ANDROID_SDK_VERSION='34' # https://developer.android.com/tools/releases/platforms
 ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_VERSION;google_apis_playstore;$ANDROID_ARCH"
-RC_FILE="$HOME/.zshrc"
-if [ $GITHUB_ACTIONS ]; then
-    RC_FILE="$HOME/.bashrc"
-fi
+add_path () {
+    if [ $GITHUB_ACTIONS ]; then
+        echo "$1" >> $GITHUB_PATH
+    else
+        echo "export PATH=\$PATH:$1" >> .bashrc
+    fi
+}
 
 touch $RC_FILE
 
@@ -26,16 +29,13 @@ sudo npm i -g appium@next && \
 brew install gradle `# https://gist.github.com/patrickhammond/4ddbe49a67e5eb1b9c03` `# https://formulae.brew.sh/formula/gradle` && \
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew tap homebrew/cask-versions && brew install --cask temurin17 `# https://adoptium.net/installation/` && \
-echo '
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools
-' >> $RC_FILE && \
-source $RC_FILE && \
+ANDROID_SDK_ROOT=$HOME/Library/Android/sdk && \
+add_path $ANDROID_SDK_ROOT/emulator && \
+add_path $ANDROID_SDK_ROOT/cmdline-tools/latest/bin && \
+add_path $ANDROID_SDK_ROOT/tools && \
+add_path $ANDROID_SDK_ROOT/tools/bin && \
+add_path $ANDROID_SDK_ROOT/platform-tools && \
+add_path $ANDROID_SDK_ROOT/build-tools && \
 touch ~/.android/repositories.cfg && \
 yes | sdkmanager --licenses && \
 sdkmanager --update && \
