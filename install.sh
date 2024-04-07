@@ -5,7 +5,7 @@ if [ 'arm64e' = $(uname -p) ]; then
     ANDROID_ARCH='arm64-v8a'
 fi
 ANDROID_SDK_LEVEL='35' # https://developer.android.com/tools/releases/platforms
-ANDROID_PACKAGE="system-images;android-33;google_apis;$ANDROID_ARCH"
+ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_LEVEL;google_apis;$ANDROID_ARCH"
 
 # https://brew.sh/#install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
