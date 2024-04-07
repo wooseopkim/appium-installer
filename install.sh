@@ -4,7 +4,7 @@ ANDROID_ARCH='x86_64'
 if [ 'arm64e' = $(uname -p) ]; then
     ANDROID_ARCH='arm64-v8a'
 fi
-ANDROID_SDK_VERSION='35' # https://developer.android.com/tools/releases/platforms
+ANDROID_SDK_VERSION='34' # https://developer.android.com/tools/releases/platforms
 ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_VERSION;google_apis_playstore;$ANDROID_ARCH"
 
 # https://brew.sh/#install
