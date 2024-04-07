@@ -8,16 +8,17 @@ on:
 jobs:
   test:
     strategy:
-        matrix:
-          include:
-            - os: windows-latest
-              script: powershell .\install.ps1
-            - os: macos-latest
-              script: bash ./install.sh
-            # because these runners come with preinstalled tools,
-            # we better test also on bare system images:
-            # - mcr.microsoft.com/windows/nanoserver:ltsc2022
-            # - sickcodes/docker-osx:latest
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            script: powershell .\install.ps1
+          - os: macos-latest
+            script: bash ./install.sh
+          # because these runners come with preinstalled tools,
+          # we better test also on bare system images:
+          # - mcr.microsoft.com/windows/nanoserver:ltsc2022
+          # - sickcodes/docker-osx:latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
