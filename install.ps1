@@ -62,13 +62,13 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
 ; if($?) { choco install -y gradle } # https://community.chocolatey.org/packages/gradle
 ; if($?) { choco install -y android-sdk } # https://community.chocolatey.org/packages/android-sdk
-; if($?) { $AndroidSdkRoot = $env:USERPROFILE/Library/Android/sdk }
-; if($?) { Add-Path $AndroidSdkRoot/emulator }
-; if($?) { Add-Path $AndroidSdkRoot/cmdline-tools/latest/bin }
-; if($?) { Add-Path $AndroidSdkRoot/tools }
-; if($?) { Add-Path $AndroidSdkRoot/tools/bin }
-; if($?) { Add-Path $AndroidSdkRoot/platform-tools }
-; if($?) { Add-Path $AndroidSdkRoot/build-tools }
+; if($?) { $AndroidSdkRoot = "$env:USERPROFILE/Library/Android/sdk" }
+; if($?) { Add-Path "$AndroidSdkRoot/emulator" }
+; if($?) { Add-Path "$AndroidSdkRoot/cmdline-tools/latest/bin" }
+; if($?) { Add-Path "$AndroidSdkRoot/tools" }
+; if($?) { Add-Path "$AndroidSdkRoot/tools/bin" }
+; if($?) { Add-Path "$AndroidSdkRoot/platform-tools" }
+; if($?) { Add-Path "$AndroidSdkRoot/build-tools" }
 ; if($?) { refreshenv }
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 ; if($?) { choco install -y Temurin17 --params="$temurinParams" } # https://community.chocolatey.org/packages/Temurin17
