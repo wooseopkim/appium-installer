@@ -6,9 +6,9 @@ if [ 'arm64e' = $(uname -p) ]; then
 fi
 ANDROID_SDK_VERSION='34' # https://developer.android.com/tools/releases/platforms
 ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_VERSION;google_apis_playstore;$ANDROID_ARCH"
-RC_FILE='~/.zshrc'
+RC_FILE="$HOME/.zshrc"
 if [ $GITHUB_ACTIONS ]; then
-    RC_FILE='~/.bashrc'
+    RC_FILE="$HOME/.bashrc"
 fi
 
 touch $RC_FILE
