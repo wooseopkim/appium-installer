@@ -38,7 +38,7 @@ jobs:
         run: sdkmanager --list
 
       - name: Check Android virtual device
-        run: avdmanager move avd --name 'Appium'
+        run: avdmanager list device
       
       - name: Check Python
         run: python --version
