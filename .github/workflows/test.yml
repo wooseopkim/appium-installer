@@ -30,6 +30,9 @@ jobs:
       - name: Check Java
         run: java -version
       
+      - name: Check Android SDK manager
+        run: sdkmanager --list
+
       - name: Check Android virtual device
         run: avdmanager move avd --name 'Appium'
       
