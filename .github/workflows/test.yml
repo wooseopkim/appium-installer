@@ -13,8 +13,10 @@ jobs:
         include:
           - image: dockurr/windows:latest
             script: install.ps1
+            shell: powershell
           - image: sickcodes/docker-osx:latest
             script: install.sh
+            shell: bash
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
@@ -23,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: /${{ matrix.script }}
+      - run: ${{ matrix.shell }} /${{ matrix.script }}
       
       - name: Check Appium
         run: appium --version
