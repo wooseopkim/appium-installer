@@ -27,7 +27,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 ' >> ~/.bashrc && \
 source ~/.bashrc && \
 yes | sdkmanager --licenses && \
-sdkmanager "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` && \
+sdkmanager --install "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` && \
 avdmanager create avd --name 'Appium' --abi "google_apis/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
 
 `# https://appium.io/docs/en/2.0/quickstart/next-steps/`
