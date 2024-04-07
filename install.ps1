@@ -40,9 +40,9 @@ $androidSDkVersion = '34' # https://developer.android.com/tools/releases/platfor
 $androidPackage = "system-images;android-$androidSdkVersion;google_apis;$androidArch"
 
 function Add-Path {
-    param {
+    param (
         $Path
-    }
+    )
 
     echo $Path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 }
