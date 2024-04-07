@@ -16,8 +16,6 @@ add_path () {
     fi
 }
 
-touch $RC_FILE
-
 # https://brew.sh/#install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
 
