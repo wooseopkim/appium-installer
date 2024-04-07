@@ -60,7 +60,7 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 ; if($?) { npm i -g appium@next }
 
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
-; if($?) { choco install -y android-sdk } # https://community.chocolatey.org/packages/android-sdk
+; if($?) { choco install -y androidstudio } # https://community.chocolatey.org/packages/AndroidStudio
 ; if($?) { $AndroidSdkRoot = "$env:USERPROFILE/Library/Android/sdk" }
 ; if($?) { Add-Path "$AndroidSdkRoot/emulator" }
 ; if($?) { Add-Path "$AndroidSdkRoot/cmdline-tools/latest/bin" }
