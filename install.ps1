@@ -49,8 +49,10 @@ function Add-Path {
         $Path
     )
 
+    if ($env:GITHUB_ACTIONS) {
+        echo $Path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+    }
     $env:PATH += ";$Path"
-    echo $Path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     refreshenv
 }
 
