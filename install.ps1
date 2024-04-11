@@ -71,7 +71,9 @@ if ($env:GITHUB_ACTIONS) {
     $AndroidSdkRoot = "C:\Android\android-sdk"
 }
 echo "$AndroidSdkRoot"
-ls "$AndroidSdkRoot\platform-tools"
+ls "$AndroidSdkRoot\cmdline-tools"
+ls "$AndroidSdkRoot\cmdline-tools\latest"
+ls "$AndroidSdkRoot\cmdline-tools\latest\bin"
 Add-Path "$AndroidSdkRoot\emulator"
 Add-Path "$AndroidSdkRoot\cmdline-tools\latest\bin"
 Add-Path "$AndroidSdkRoot\tools"
