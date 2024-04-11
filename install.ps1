@@ -66,16 +66,13 @@ npm i -g appium@next
 
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
 choco install -y androidstudio # https://community.chocolatey.org/packages/AndroidStudio
-$AndroidSdkRoot = "$env:USERPROFILE/Library/Android/sdk"
-Add-Path "$AndroidSdkRoot/emulator"
-Add-Path "$AndroidSdkRoot/cmdline-tools/latest/bin"
-Add-Path "$AndroidSdkRoot/tools"
-Add-Path "$AndroidSdkRoot/tools/bin"
-Add-Path "$AndroidSdkRoot/platform-tools"
-Add-Path "$AndroidSdkRoot/build-tools"
-ls "C:\Program files\Android\Android Studio\plugins"
-ls "C:\Program files\Android\Android Studio\bin"
-ls "C:\Program files\Android\Android Studio\lib"
+$AndroidSdkRoot = "$env:USERPROFILE\AppData\Local\Android\sdk"
+Add-Path "$AndroidSdkRoot\emulator"
+Add-Path "$AndroidSdkRoot\cmdline-tools\latest\bin"
+Add-Path "$AndroidSdkRoot\tools"
+Add-Path "$AndroidSdkRoot\tools/bin"
+Add-Path "$AndroidSdkRoot\platform-tools"
+Add-Path "$AndroidSdkRoot\build-tools"
 refreshenv
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 choco install -y Temurin17 --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin17
