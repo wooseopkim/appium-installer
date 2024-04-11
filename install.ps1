@@ -49,7 +49,9 @@ function Add-Path {
         $Path
     )
 
+    $env:PATH += ";$Path"
     echo $Path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+    refreshenv
 }
 
 # https://docs.chocolatey.org/en-us/choco/setup#install-with-powershell.exe
