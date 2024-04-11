@@ -84,8 +84,8 @@ refreshenv
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 choco install -y Temurin17 --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin17
 refreshenv
-echo y | sdkmanager "$androidPackage"
-avdmanager create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P'
+echo y | sdkmanager.bat "$androidPackage"
+avdmanager.bat create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P'
 
 # https://appium.io/docs/en/2.0/quickstart/next-steps/
 choco install -y python3 --version 3.11.3 # https://community.chocolatey.org/packages/python3/3.11.3
