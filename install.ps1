@@ -1,3 +1,8 @@
+# https://github.com/PowerShell/PowerShell/issues/3415#issuecomment-1354457563
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+
 # https://learn.microsoft.com/en-us/androidArchive/blogs/virtual_pc_guy/a-self-elevating-powershell-script
 
 # Get the ID and security principal of the current user account
@@ -56,29 +61,29 @@ $env:ChocolateyInstall = Convert-Path "$((Get-Command choco).Path)\..\.."
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # https://appium.io/docs/en/2.0/quickstart/install/
-; if($?) { choco install -y nodejs-lts } # https://community.chocolatey.org/packages/nodejs-lts
-; if($?) { npm i -g appium@next }
+choco install -y nodejs-lts # https://community.chocolatey.org/packages/nodejs-lts
+npm i -g appium@next
 
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
-; if($?) { choco install -y androidstudio } # https://community.chocolatey.org/packages/AndroidStudio
-; if($?) { $AndroidSdkRoot = "$env:USERPROFILE/Library/Android/sdk" }
-; if($?) { Add-Path "$AndroidSdkRoot/emulator" }
-; if($?) { Add-Path "$AndroidSdkRoot/cmdline-tools/latest/bin" }
-; if($?) { Add-Path "$AndroidSdkRoot/tools" }
-; if($?) { Add-Path "$AndroidSdkRoot/tools/bin" }
-; if($?) { Add-Path "$AndroidSdkRoot/platform-tools" }
-; if($?) { Add-Path "$AndroidSdkRoot/build-tools" }
-; if($?) { ls "$AndroidSdkRoot/cmdline-tools/latest/bin" }
-; if($?) { ls "$AndroidSdkRoot/platform-tools" }
-; if($?) { refreshenv }
+choco install -y androidstudio # https://community.chocolatey.org/packages/AndroidStudio
+$AndroidSdkRoot = "$env:USERPROFILE/Library/Android/sdk"
+Add-Path "$AndroidSdkRoot/emulator"
+Add-Path "$AndroidSdkRoot/cmdline-tools/latest/bin"
+Add-Path "$AndroidSdkRoot/tools"
+Add-Path "$AndroidSdkRoot/tools/bin"
+Add-Path "$AndroidSdkRoot/platform-tools"
+Add-Path "$AndroidSdkRoot/build-tools"
+ls "$AndroidSdkRoot/cmdline-tools/latest/bin"
+ls "$AndroidSdkRoot/platform-tools"
+refreshenv
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
-; if($?) { choco install -y Temurin17 --params="$temurinParams" } # https://community.chocolatey.org/packages/Temurin17
-; if($?) { refreshenv }
-; if($?) { echo y | sdkmanager "$androidPackage" }
-; if($?) { avdmanager create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P' }
+choco install -y Temurin17 --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin17
+refreshenv
+echo y | sdkmanager "$androidPackage"
+avdmanager create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P'
 
 # https://appium.io/docs/en/2.0/quickstart/next-steps/
-; if($?) { choco install -y python3 --version 3.11.3 } # https://community.chocolatey.org/packages/python3/3.11.3
+choco install -y python3 --version 3.11.3 # https://community.chocolatey.org/packages/python3/3.11.3
 
 # download and install appium-inspector or use web version # https://github.com/appium/appium-inspector#installation
 
