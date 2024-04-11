@@ -68,6 +68,8 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 ; if($?) { Add-Path "$AndroidSdkRoot/tools/bin" }
 ; if($?) { Add-Path "$AndroidSdkRoot/platform-tools" }
 ; if($?) { Add-Path "$AndroidSdkRoot/build-tools" }
+; if($?) { ls "$AndroidSdkRoot/cmdline-tools/latest/bin" }
+; if($?) { ls "$AndroidSdkRoot/platform-tools" }
 ; if($?) { refreshenv }
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 ; if($?) { choco install -y Temurin17 --params="$temurinParams" } # https://community.chocolatey.org/packages/Temurin17
