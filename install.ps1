@@ -73,8 +73,9 @@ Add-Path "$AndroidSdkRoot/tools"
 Add-Path "$AndroidSdkRoot/tools/bin"
 Add-Path "$AndroidSdkRoot/platform-tools"
 Add-Path "$AndroidSdkRoot/build-tools"
-ls "$AndroidSdkRoot/cmdline-tools/latest/bin"
-ls "$AndroidSdkRoot/platform-tools"
+ls "C:"
+ls "C:\Program files"
+ls "C:\Program files (x86)"
 refreshenv
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 choco install -y Temurin17 --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin17
