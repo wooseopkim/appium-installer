@@ -12,7 +12,8 @@ add_path () {
     if [ $GITHUB_ACTIONS ]; then
         echo "$1" >> $GITHUB_PATH
     else
-        echo "export PATH=\$PATH:$1" >> .bashrc
+        echo "export PATH=\$PATH:$1" >> ~/.bashrc
+        source ~/.bashrc
     fi
 }
 
