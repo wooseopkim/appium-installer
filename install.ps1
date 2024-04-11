@@ -66,6 +66,9 @@ npm i -g appium@next
 
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
 choco install -y androidstudio # https://community.chocolatey.org/packages/AndroidStudio
+ls "$env:USERPROFILE\AppData\Local"
+ls "$env:USERPROFILE\AppData\Local\Android"
+ls "$env:USERPROFILE\AppData\Local\Android\sdk"
 $AndroidSdkRoot = "$env:USERPROFILE\AppData\Local\Android\sdk"
 Add-Path "$AndroidSdkRoot\emulator"
 Add-Path "$AndroidSdkRoot\cmdline-tools\latest\bin"
