@@ -77,7 +77,7 @@ ls "$AndroidSdkRoot\cmdline-tools\latest\bin"
 Add-Path "$AndroidSdkRoot\emulator"
 Add-Path "$AndroidSdkRoot\cmdline-tools\latest\bin"
 Add-Path "$AndroidSdkRoot\tools"
-Add-Path "$AndroidSdkRoot\tools/bin"
+Add-Path "$AndroidSdkRoot\tools\bin"
 Add-Path "$AndroidSdkRoot\platform-tools"
 Add-Path "$AndroidSdkRoot\build-tools"
 refreshenv
