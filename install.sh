@@ -10,8 +10,8 @@ ANDROID_SDK_VERSION='34' # https://developer.android.com/tools/releases/platform
 ANDROID_PACKAGE="system-images;android-$ANDROID_SDK_VERSION;google_apis_playstore;$ANDROID_ARCH"
 add_path () {
     if [ $GITHUB_ACTIONS ]; then
-        echo "$1" >> $GITHUB_PATH
-    else
+        echo "$1" >> "$GITHUB_PATH"
+    fi
     echo "export PATH=\$PATH:$1" >> ~/.bashrc
     source ~/.bashrc
 }
