@@ -27,12 +27,12 @@ sudo npm i -g appium@next && \
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew tap homebrew/cask-versions && brew install --cask temurin17 `# https://adoptium.net/installation/` && \
 ANDROID_SDK_ROOT=$HOME/Library/Android/sdk && \
-add_path $ANDROID_SDK_ROOT/emulator && \
-add_path $ANDROID_SDK_ROOT/cmdline-tools/latest/bin && \
-add_path $ANDROID_SDK_ROOT/tools && \
-add_path $ANDROID_SDK_ROOT/tools/bin && \
-add_path $ANDROID_SDK_ROOT/platform-tools && \
-add_path $ANDROID_SDK_ROOT/build-tools && \
+add_path "$ANDROID_SDK_ROOT/emulator" && \
+add_path "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" && \
+add_path "$ANDROID_SDK_ROOT/tools" && \
+add_path "$ANDROID_SDK_ROOT/tools/bin" && \
+add_path "$ANDROID_SDK_ROOT/platform-tools" && \
+add_path "$ANDROID_SDK_ROOT/build-tools" && \
 touch ~/.android/repositories.cfg && \
 yes | sdkmanager --licenses && \
 sdkmanager --update && \
