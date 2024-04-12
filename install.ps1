@@ -52,7 +52,7 @@ function Add-Path {
     if ($env:GITHUB_ACTIONS) {
         echo "$path" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     }
-    $env:PATH += ";$path"
+    [Environment]::SetEnvironmentVariable("PATH", "$env:PATH;$path", [EnvironmentVariableTarget]::Machine)
     refreshenv
 }
 
