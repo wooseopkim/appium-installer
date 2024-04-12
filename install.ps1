@@ -46,13 +46,13 @@ $androidPackage = "system-images;android-$androidSdkVersion;google_apis;$android
 
 function Add-Path {
     param (
-        $Path
+        $path
     )
 
     if ($env:GITHUB_ACTIONS) {
-        echo $Path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        echo "$path" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     }
-    $env:PATH += ";$Path"
+    $env:PATH += ";$path"
     refreshenv
 }
 
@@ -70,16 +70,16 @@ npm i -g appium@next
 
 # https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
 choco install -y androidstudio # https://community.chocolatey.org/packages/AndroidStudio
-$AndroidSdkRoot = "$env:USERPROFILE\AppData\Local\Android\sdk"
+$androidSdkRoot = "$env:USERPROFILE\AppData\Local\Android\sdk"
 if ($env:GITHUB_ACTIONS) {
-    $AndroidSdkRoot = "C:\Android\android-sdk"
+    $androidSdkRoot = "C:\Android\android-sdk"
 }
-Add-Path "$AndroidSdkRoot\emulator"
-Add-Path "$AndroidSdkRoot\cmdline-tools\latest\bin"
-Add-Path "$AndroidSdkRoot\tools"
-Add-Path "$AndroidSdkRoot\tools\bin"
-Add-Path "$AndroidSdkRoot\platform-tools"
-Add-Path "$AndroidSdkRoot\build-tools"
+Add-Path "$androidSdkRoot\emulator"
+Add-Path "$androidSdkRoot\cmdline-tools\latest\bin"
+Add-Path "$androidSdkRoot\tools"
+Add-Path "$androidSdkRoot\tools\bin"
+Add-Path "$androidSdkRoot\platform-tools"
+Add-Path "$androidSdkRoot\build-tools"
 echo $env:PATH
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 choco install -y Temurin17 --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin17
