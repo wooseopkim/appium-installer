@@ -11,8 +11,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - os: windows-2019
+            script: powershell .\install.ps1
           - os: windows-latest
             script: powershell .\install.ps1
+          - os: macos-13
+            script: bash ./install.sh
+          - os: macos-latest-large
+            script: bash ./install.sh
           - os: macos-latest
             script: bash ./install.sh
           # because these runners come with preinstalled tools,
