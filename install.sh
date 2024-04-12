@@ -12,9 +12,8 @@ add_path () {
     if [ $GITHUB_ACTIONS ]; then
         echo "$1" >> $GITHUB_PATH
     else
-        echo "export PATH=\$PATH:$1" >> ~/.bashrc
-        source ~/.bashrc
-    fi
+    echo "export PATH=\$PATH:$1" >> ~/.bashrc
+    source ~/.bashrc
 }
 
 # https://brew.sh/#install
