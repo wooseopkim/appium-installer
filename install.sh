@@ -26,6 +26,7 @@ sudo npm i -g appium@next && \
 `# https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/`
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew install --cask temurin@17 `# https://formulae.brew.sh/cask/temurin@17#default` && \
+export JAVA_HOME=`/usr/libexec/java_home -v 17` && \
 ANDROID_SDK_ROOT=$HOME/Library/Android/sdk && \
 add_path "$ANDROID_SDK_ROOT/emulator" && \
 add_path "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" && \
