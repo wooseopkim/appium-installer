@@ -12,38 +12,27 @@ jobs:
       matrix:
         include:
           - os: windows-2019
-            reset-environment: powershell .\reset.ps1
-            install: powershell .\install.ps1
+            reset-script: powershell .\reset-script.ps1
+            install-script: powershell .\install-script.ps1
+            verify-script: powershell .\verify-script.ps1
           - os: windows-latest
-            reset-environment: powershell .\reset.ps1
-            install: powershell .\install.ps1
+            reset-script: powershell .\reset-script.ps1
+            install-script: powershell .\install-script.ps1
+            verify-script: powershell .\verify-script.ps1
           - os: macos-13
-            reset-environment: bash ./reset.sh
-            install: bash ./install.sh
+            reset-script: bash ./reset-script.sh
+            install-script: bash ./install-script.sh
+            verify-script: bash ./verify-script.sh
           - os: macos-latest
-            reset-environment: bash ./reset.sh
-            install: bash ./install.sh
+            reset-script: bash ./reset-script.sh
+            install-script: bash ./install-script.sh
+            verify-script: bash ./verify-script.sh
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-
       - name: Reset runner environment
-        run: ${{ matrix.reset-environment }}
-      
+        run: ${{ matrix.reset-script }}
       - name: Execute the installer
-        run: ${{ matrix.install }}
-
-      - name: Check Appium
-        run: appium --version
-      
-      - name: Check Java
-        run: java -version
-      
-      - name: Check Android SDK manager
-        run: sdkmanager --list
-
-      - name: Check Android virtual device
-        run: avdmanager list device
-      
-      - name: Check Python
-        run: python --version
+        run: ${{ matrix.install-script }}
+      - name: Verify installation
+        run: ${{ matrix.verify-script }}
