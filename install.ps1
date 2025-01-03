@@ -56,6 +56,7 @@ function Add-Path {
     refreshenv
 }
 
+echo '::group::choco'
 # https://docs.chocolatey.org/en-us/choco/setup#install-with-powershell.exe
 Set-ExecutionPolicy Bypass -Scope Process -Force
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
@@ -63,12 +64,18 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 # https://stackoverflow.com/a/46760714
 $env:ChocolateyInstall = Convert-Path "$((Get-Command choco).Path)\..\.."
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+echo '::endgroup::'
 
 # https://appium.io/docs/en/2.12/quickstart/install/
+echo '::group::node'
 choco install -y nodejs-lts # https://community.chocolatey.org/packages/nodejs-lts
+echo '::endgroup::'
+echo '::group::appium'
 npm i -g appium
+echo '::endgroup::'
 
 # https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/
+echo '::group::android'
 choco install -y androidstudio # https://community.chocolatey.org/packages/AndroidStudio
 $androidHome = "$env:USERPROFILE\AppData\Local\Android\sdk"
 [Environment]::SetEnvironmentVariable("ANDROID_HOME", "$androidHome", [EnvironmentVariableTarget]::Machine)
@@ -78,6 +85,7 @@ Add-Path "$androidHome\tools"
 Add-Path "$androidHome\tools\bin"
 Add-Path "$androidHome\platform-tools"
 Add-Path "$androidHome\build-tools"
+echo '::endgroup::'
 
 echo '::group::Binaries'
 $env:Path.split(";") | ForEach-Object {
@@ -90,15 +98,22 @@ if (Test-Path -Path "$androidHome") {
 }
 echo '::endgroup::'
 
+echo '::group::java'
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 choco install -y temurin --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin
 refreshenv
+echo '::endgroup::'
+
+echo '::group::setup'
 echo y | sdkmanager "$androidPackage"
 avdmanager create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P'
 appium setup
+echo '::endgroup::'
 
 # https://appium.io/docs/en/2.12/quickstart/next-steps/
+echo '::group::python'
 choco install -y python3 # https://community.chocolatey.org/packages/python3#versionhistory
+echo '::endgroup::'
 
 # download and install appium-inspector or use web version # https://github.com/appium/appium-inspector#installation
 

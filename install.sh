@@ -43,12 +43,19 @@ if [ "$CI" != 'true' ]; then
 fi
 
 # https://appium.io/docs/en/2.12/quickstart/install/
+echo '::group::node'
 brew install node # https://formulae.brew.sh/formula/node
+echo '::endgroup::'
+echo '::group::appium'
 sudo npm i -g appium
+echo '::endgroup::'
 
 # https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/
+echo '::group::java'
 brew install --cask temurin # https://formulae.brew.sh/cask/temurin
 set_env JAVA_HOME `/usr/libexec/java_home`
+echo '::endgroup::'
+echo '::group::android'
 brew install --cask android-commandlinetools #https://formulae.brew.sh/cask/android-commandlinetools
 brew install --cask android-platform-tools # https://formulae.brew.sh/cask/android-platform-tools
 add_path "$(brew --prefix)/share/android-commandlinetools/cmdline-tools/latest/bin"
@@ -58,10 +65,13 @@ sdkmanager --update
 sdkmanager --install "$ANDROID_PACKAGE" # https://developer.android.com/tools/sdkmanager#install
 avdmanager create avd --name 'Appium' --abi "google_apis_playstore/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P"
 appium setup
+echo '::endgroup::'
 
 # https://appium.io/docs/en/2.12/quickstart/next-steps/
+echo '::group::python'
 brew install python # https://formulae.brew.sh/formula/python@3.13#default
 add_path "$(brew --prefix python)/libexec/bin"
+echo '::endgroup::'
 
 # download and install appium-inspector or use web version
 # https://github.com/appium/appium-inspector#installation
