@@ -23,6 +23,24 @@ set_env () {
 
 # https://brew.sh/#install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# https://docs.brew.sh/Manpage#shellenv-shell-
+if [ "$CI" != 'true' ]; then
+    if [ -f ~/.zshrc ]; then
+        echo 'eval "$(brew shellenv zsh)"' >> ~/.zshrc
+    fi
+    if [ -f ~/.zprofile ]; then
+        echo 'eval "$(brew shellenv zsh)"' >> ~/.zprofile
+    fi
+    if [ -f ~/.bashrc ]; then
+        echo 'eval "$(brew shellenv bash)"' >> ~/.bashrc
+    fi
+    if [ -f ~/.bash_profile ]; then
+        echo 'eval "$(brew shellenv bash)"' >> ~/.bash_profile
+    fi
+    if [ -f ~/.config/fish/config.fish ]; then
+        echo 'eval "$(brew shellenv fish)"' >> ~/.config/fish/config.fish
+    fi
+fi
 
 # https://appium.io/docs/en/2.12/quickstart/install/
 brew install node # https://formulae.brew.sh/formula/node
