@@ -14,7 +14,8 @@ destroy_environment () {
     if [ "$GITHUB_ACTIONS" == 'true' ]; then
         echo "$keys" | xargs -I % bash -c 'if [ -e "$%" ]; then rm -rf "$%" && echo "environment variable content removed: %"; fi'
     fi
-    echo "$keys" | xargs -I % bash -c 'unset % && echo "environment variable removed: %"'
+    echo "$keys" | xargs unset
+    echo "environment variable removed: $keys"
 }
 
 assert_not_callable () {
