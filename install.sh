@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+#!/usr/bin/env bash -eu -o pipefail
 
 ANDROID_ARCH='x86_64'
 if [ 'arm64e' = $(uname -p) ]; then
