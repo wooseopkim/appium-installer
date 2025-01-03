@@ -25,7 +25,10 @@ function Destroy-Environment {
         if ($env:GITHUB_ACTIONS -eq 'true') {
             $envValue = (Get-Item -Path "$envPath").Value
             if (Test-Path -Path "$envValue") {
-                Remove-Item -Path "$envValue" -Force -Recurse
+                try {
+                    Remove-Item -Path "$envValue" -Force -Recurse
+                }
+                catch {}
             }
         }
         Remove-Item -Path "$envPath"
