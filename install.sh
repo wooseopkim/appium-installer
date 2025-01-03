@@ -22,32 +22,32 @@ set_env () {
 }
 
 # https://brew.sh/#install
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-`# https://appium.io/docs/en/2.12/quickstart/install/`
-brew install node `# https://formulae.brew.sh/formula/node` && \
-sudo npm i -g appium && \
+# https://appium.io/docs/en/2.12/quickstart/install/
+brew install node # https://formulae.brew.sh/formula/node
+sudo npm i -g appium
 
-`# https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/`
-brew install --cask android-commandlinetools `#https://formulae.brew.sh/cask/android-commandlinetools` && \
-brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
-brew install --cask temurin `# https://formulae.brew.sh/cask/temurin` && \
-set_env JAVA_HOME `/usr/libexec/java_home` && \
-ANDROID_SDK_ROOT=$HOME/Library/Android/sdk && \
-add_path "$ANDROID_SDK_ROOT/emulator" && \
-add_path "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" && \
-add_path "$ANDROID_SDK_ROOT/tools" && \
-add_path "$ANDROID_SDK_ROOT/tools/bin" && \
-add_path "$ANDROID_SDK_ROOT/platform-tools" && \
-add_path "$ANDROID_SDK_ROOT/build-tools" && \
-touch ~/.android/repositories.cfg && \
-yes | sdkmanager --licenses && \
-sdkmanager --update && \
-sdkmanager --install "$ANDROID_PACKAGE" `# https://developer.android.com/tools/sdkmanager#install` && \
-avdmanager create avd --name 'Appium' --abi "google_apis_playstore/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P" && \
+# https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/
+brew install --cask android-commandlinetools `#https://formulae.brew.sh/cask/android-commandlinetools`
+brew install --cask android-platform-tools # https://formulae.brew.sh/cask/android-platform-tools
+brew install --cask temurin # https://formulae.brew.sh/cask/temurin
+set_env JAVA_HOME `/usr/libexec/java_home`
+ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+add_path "$ANDROID_SDK_ROOT/emulator"
+add_path "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin"
+add_path "$ANDROID_SDK_ROOT/tools"
+add_path "$ANDROID_SDK_ROOT/tools/bin"
+add_path "$ANDROID_SDK_ROOT/platform-tools"
+add_path "$ANDROID_SDK_ROOT/build-tools"
+touch ~/.android/repositories.cfg
+yes | sdkmanager --licenses
+sdkmanager --update
+sdkmanager --install "$ANDROID_PACKAGE" # https://developer.android.com/tools/sdkmanager#install
+avdmanager create avd --name 'Appium' --abi "google_apis_playstore/$ANDROID_ARCH" --package "$ANDROID_PACKAGE" --device "Nexus 6P"
 appium setup
 
-`# https://appium.io/docs/en/2.12/quickstart/next-steps/`
+# https://appium.io/docs/en/2.12/quickstart/next-steps/
 brew install python # https://formulae.brew.sh/formula/python@3.13#default
 
 # download and install appium-inspector or use web version
