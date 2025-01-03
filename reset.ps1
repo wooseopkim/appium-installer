@@ -10,21 +10,24 @@ if ($env:CI -ne 'true') {
 
 function Remove-Command {
     param (
-        $name
+        [ValidateNotNullOrEmpty()]
+        [string]$name
     )
     where.exe "$name" | ForEach-Object { Remove-Item "$_" }
 }
 
 function Unset-Environment {
     param (
-        $pattern
+        [ValidateNotNullOrEmpty()]
+        [string]$pattern
     )
     Get-ChildItem env:*$pattern* -Name | ForEach-Object { [Environment]::SetEnvironmentVariable("$_", $null, [EnvironmentVariableTarget]::Machine) }
 }
 
 function Assert-Not-Callable {
     param (
-        $name
+        [ValidateNotNullOrEmpty()]
+        [string]$name
     )
     try {
         where.exe "$name" *> $null
@@ -37,7 +40,8 @@ function Assert-Not-Callable {
 
 function Assert-Environment-Does-Not-Match {
     param (
-        $pattern
+        [ValidateNotNullOrEmpty()]
+        [string]$pattern
     )
     if (Test-Path -Path env:*$pattern*) {
         throw
