@@ -12,22 +12,26 @@ jobs:
       matrix:
         include:
           - os: windows-2019
-            script: powershell .\install.ps1
+            reset-environment: powershell .\reset.ps1
+            install: powershell .\install.ps1
           - os: windows-latest
-            script: powershell .\install.ps1
+            reset-environment: powershell .\reset.ps1
+            install: powershell .\install.ps1
           - os: macos-13
-            script: bash ./install.sh
+            reset-environment: sudo bash ./reset.sh
+            install: bash ./install.sh
           - os: macos-latest
-            script: bash ./install.sh
-          # because these runners come with preinstalled tools,
-          # we better test also on bare system images:
-          # - mcr.microsoft.com/windows/nanoserver:ltsc2022
-          # - sickcodes/docker-osx:latest
+            reset-environment: sudo bash ./reset.sh
+            install: bash ./install.sh
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Reset runner environment
+        run: ${{ matrix.reset-environment }}
       
-      - run: ${{ matrix.script }}
+      - name: Execute the installer
+        run: ${{ matrix.install }}
 
       - name: Check Appium
         run: appium --version
