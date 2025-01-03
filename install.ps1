@@ -78,6 +78,18 @@ Add-Path "$androidHome\tools"
 Add-Path "$androidHome\tools\bin"
 Add-Path "$androidHome\platform-tools"
 Add-Path "$androidHome\build-tools"
+
+echo '::group::Binaries'
+$env:Path.split(";") | ForEach-Object {
+    Get-ChildItem -Path $_ -ErrorAction SilentlyContinue
+} | Where-Object { $env:PATHEXT.ToLower() -match $_.Extension.ToLower() } | Select-Object FullName
+echo '::endgroup::'
+echo '::group::Android Home'
+if (Test-Path -Path "$androidHome") {
+    Get-Item -Path "$androidHome"
+}
+echo '::endgroup::'
+
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
 choco install -y temurin --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin
 refreshenv
