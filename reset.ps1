@@ -75,7 +75,7 @@ function Assert-Environment-Does-Not-Match {
 @'
     JAVA
     ANDROID
-    Chocolately
+    Chocolatey
 '@.Split("`n") | ForEach-Object {
     $pattern = $_.Trim()
     Destroy-Environment "$pattern"
