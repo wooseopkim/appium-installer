@@ -31,7 +31,7 @@ sudo npm i -g appium
 # https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/
 brew install --cask temurin # https://formulae.brew.sh/cask/temurin
 set_env JAVA_HOME `/usr/libexec/java_home`
-brew install --cask android-commandlinetools `#https://formulae.brew.sh/cask/android-commandlinetools`
+brew install --cask android-commandlinetools #https://formulae.brew.sh/cask/android-commandlinetools
 brew install --cask android-platform-tools # https://formulae.brew.sh/cask/android-platform-tools
 add_path "$(brew --prefix)/share/android-commandlinetools/cmdline-tools/latest/bin"
 touch ~/.android/repositories.cfg
