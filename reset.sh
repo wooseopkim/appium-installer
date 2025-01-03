@@ -1,6 +1,7 @@
 #!/usr/bin/env bash -eu -o pipefail
 
 if [ "${CI:-}" != 'true' ]; then
+    echo 'not on CI'
     exit 1
 fi
 

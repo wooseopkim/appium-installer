@@ -4,6 +4,7 @@ $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
 
 if ($env:CI -ne 'true') {
+    echo 'not on CI'
     exit 1
 }
 
