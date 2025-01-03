@@ -9,8 +9,12 @@ remove_command () {
     which -a $1 | xargs rm
 }
 
-unset_environment () {
-    unset `awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1`
+destroy_environment () {
+    $keys=`awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1`
+    if [ "$GITHUB_ACTIONS" == 'true' ]; then
+        echo $keys | xargs -I % bash -c 'if [ -e "$%" ]; then echo "%"; fi' | rm -rf
+    fi
+    unset $keys
 }
 
 assert_not_callable () {
@@ -37,7 +41,7 @@ done <<-EOF
 EOF
 
 while read pattern; do
-    unset_environment "$pattern"
+    destroy_environment "$pattern"
     assert_environment_does_not_match "$pattern"
 done <<-EOF
     JAVA

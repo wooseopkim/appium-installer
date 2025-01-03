@@ -15,12 +15,20 @@ function Remove-Command {
     where.exe "$name" | ForEach-Object { Remove-Item "$_" }
 }
 
-function Unset-Environment {
+function Destroy-Environment {
     param (
         [ValidateNotNullOrEmpty()]
         [string]$pattern
     )
-    Get-ChildItem env:*$pattern* -Name | ForEach-Object { Remove-Item -Path "env:$_" }
+    Get-ChildItem env:*$pattern* -Name | ForEach-Object {
+        $envPath = "env:$_"
+        if ($env:GITHUB_ACTIONS -eq 'true') {
+            if (Test-Path -Path "$envPath") {
+                Remove-Item -Path (Get-Item -Path "$envPath").Value -Force -Recurse
+            }
+        }
+        Remove-Item -Path "$envPath"
+    }
 }
 
 function Assert-Not-Callable {
@@ -69,6 +77,6 @@ function Assert-Environment-Does-Not-Match {
     Chocolately
 '@.Split("`n") | ForEach-Object {
     $pattern = $_.Trim()
-    Unset-Environment "$pattern"
+    Destroy-Environment "$pattern"
     Assert-Environment-Does-Not-Match "$pattern"
 }
