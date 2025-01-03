@@ -12,21 +12,21 @@ jobs:
       matrix:
         include:
           - os: windows-2019
-            reset-script: powershell .\reset-script.ps1
-            install-script: powershell .\install-script.ps1
-            verify-script: powershell .\verify-script.ps1
+            reset-script: powershell .\reset.ps1
+            install-script: powershell .\install.ps1
+            verify-script: powershell .\verify.ps1
           - os: windows-latest
-            reset-script: powershell .\reset-script.ps1
-            install-script: powershell .\install-script.ps1
-            verify-script: powershell .\verify-script.ps1
+            reset-script: powershell .\reset.ps1
+            install-script: powershell .\install.ps1
+            verify-script: powershell .\verify.ps1
           - os: macos-13
-            reset-script: bash ./reset-script.sh
-            install-script: bash ./install-script.sh
-            verify-script: bash ./verify-script.sh
+            reset-script: bash ./reset.sh
+            install-script: bash ./install.sh
+            verify-script: bash ./verify.sh
           - os: macos-latest
-            reset-script: bash ./reset-script.sh
-            install-script: bash ./install-script.sh
-            verify-script: bash ./verify-script.sh
+            reset-script: bash ./reset.sh
+            install-script: bash ./install.sh
+            verify-script: bash ./verify.sh
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
