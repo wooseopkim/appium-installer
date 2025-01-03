@@ -20,7 +20,7 @@ function Unset-Environment {
         [ValidateNotNullOrEmpty()]
         [string]$pattern
     )
-    Get-ChildItem env:*$pattern* -Name | ForEach-Object { Remove-Item -Path "$_" }
+    Get-ChildItem env:*$pattern* -Name | ForEach-Object { Remove-Item -Path "env:$_" }
 }
 
 function Assert-Not-Callable {
