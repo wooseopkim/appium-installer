@@ -20,7 +20,7 @@ function Unset-Environment {
         [ValidateNotNullOrEmpty()]
         [string]$pattern
     )
-    Get-ChildItem env:*$pattern* -Name | ForEach-Object { [Environment]::SetEnvironmentVariable("$_", $null, [EnvironmentVariableTarget]::Machine) }
+    Get-ChildItem env:*$pattern* -Name | ForEach-Object { Remove-Item -Path "$_" }
 }
 
 function Assert-Not-Callable {
