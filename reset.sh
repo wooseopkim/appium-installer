@@ -15,7 +15,7 @@ destroy_environment () {
         echo "$keys" | xargs -I % bash -c 'if [ -e "$%" ]; then rm -rf "$%" && echo "environment variable content removed: %"; fi'
     fi
     unset $keys
-    echo "environment variable removed: $(echo $keys)"
+    echo "environment variables removed: $(echo $keys)"
 }
 
 assert_not_callable () {
