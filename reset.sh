@@ -22,8 +22,8 @@ assert_environment_does_not_match () {
 }
 
 while read name; do
-    remove_command $name
-    assert_not_callable $name
+    remove_command "$name"
+    assert_not_callable "$name"
 done <<-EOF
     sdkmanager
     avdmanager
@@ -37,8 +37,8 @@ done <<-EOF
 EOF
 
 while read pattern; do
-    unset_environment $pattern
-    assert_environment_does_not_match $pattern
+    unset_environment "$pattern"
+    assert_environment_does_not_match "$pattern"
 done <<-EOF
     JAVA
     ANDROID

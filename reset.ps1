@@ -12,14 +12,14 @@ function Remove-Command {
     param (
         $name
     )
-    where.exe "$name" | ForEach-Object { Remove-Item $_ }
+    where.exe "$name" | ForEach-Object { Remove-Item "$_" }
 }
 
 function Unset-Environment {
     param (
         $pattern
     )
-    Get-ChildItem env:*$pattern* -Name | ForEach-Object { [Environment]::SetEnvironmentVariable($_, $null, [EnvironmentVariableTarget]::Machine) }
+    Get-ChildItem env:*$pattern* -Name | ForEach-Object { [Environment]::SetEnvironmentVariable("$_", $null, [EnvironmentVariableTarget]::Machine) }
 }
 
 function Assert-Not-Callable {
