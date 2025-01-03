@@ -64,11 +64,11 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 $env:ChocolateyInstall = Convert-Path "$((Get-Command choco).Path)\..\.."
 Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
-# https://appium.io/docs/en/2.0/quickstart/install/
+# https://appium.io/docs/en/2.12/quickstart/install/
 choco install -y nodejs-lts # https://community.chocolatey.org/packages/nodejs-lts
-npm i -g appium@next
+npm i -g appium
 
-# https://appium.io/docs/en/2.0/quickstart/uiauto2-driver/
+# https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/
 choco install -y androidstudio # https://community.chocolatey.org/packages/AndroidStudio
 $androidSdkRoot = "$env:USERPROFILE\AppData\Local\Android\sdk"
 if ($env:GITHUB_ACTIONS) {
@@ -83,13 +83,14 @@ Add-Path "$androidSdkRoot\build-tools"
 echo $env:PATH
 type $env:GITHUB_PATH
 $temurinParams = "/ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome /INSTALLDIR=$env:ProgramFiles\Eclipse Adoptium\"
-choco install -y Temurin17 --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin17
+choco install -y temurin --params="$temurinParams" # https://community.chocolatey.org/packages/Temurin
 refreshenv
 echo y | sdkmanager.bat "$androidPackage"
 avdmanager.bat create avd --name 'Appium' --force --abi "google_apis/$androidArch" --package "$androidPackage" --device 'Nexus 6P'
+appium setup
 
-# https://appium.io/docs/en/2.0/quickstart/next-steps/
-choco install -y python3 --version 3.11.3 # https://community.chocolatey.org/packages/python3/3.11.3
+# https://appium.io/docs/en/2.12/quickstart/next-steps/
+choco install -y python3 # https://community.chocolatey.org/packages/python3#versionhistory
 
 # download and install appium-inspector or use web version # https://github.com/appium/appium-inspector#installation
 
