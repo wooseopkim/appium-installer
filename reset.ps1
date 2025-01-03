@@ -33,7 +33,7 @@ function Ensure-Environment-Empty {
     param (
         $pattern
     )
-    -Not Test-Path -Path :env:*$pattern*
+    -Not (Test-Path -Path env:*$pattern*)
 }
 
 @"
