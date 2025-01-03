@@ -49,7 +49,7 @@ function Add-Path {
         $path
     )
 
-    if ($env:GITHUB_ACTIONS) {
+    if ($env:GITHUB_ACTIONS -eq 'true') {
         echo "$path" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
     }
     [Environment]::SetEnvironmentVariable("PATH", "$env:PATH;$path", [EnvironmentVariableTarget]::Machine)
@@ -71,7 +71,7 @@ npm i -g appium
 # https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/
 choco install -y androidstudio # https://community.chocolatey.org/packages/AndroidStudio
 $androidSdkRoot = "$env:USERPROFILE\AppData\Local\Android\sdk"
-if ($env:GITHUB_ACTIONS) {
+if ($env:GITHUB_ACTIONS -eq 'true') {
     $androidSdkRoot = "C:\Android\android-sdk"
 }
 Add-Path "$androidSdkRoot\emulator"
