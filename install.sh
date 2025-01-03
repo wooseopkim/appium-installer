@@ -29,6 +29,7 @@ brew install node `# https://formulae.brew.sh/formula/node` && \
 sudo npm i -g appium && \
 
 `# https://appium.io/docs/en/2.12/quickstart/uiauto2-driver/`
+brew install --cask android-commandlinetools `#https://formulae.brew.sh/cask/android-commandlinetools` && \
 brew install --cask android-platform-tools `# https://formulae.brew.sh/cask/android-platform-tools` && \
 brew install --cask temurin `# https://formulae.brew.sh/cask/temurin` && \
 set_env JAVA_HOME `/usr/libexec/java_home` && \
