@@ -12,10 +12,9 @@ remove_command () {
 destroy_environment () {
     keys=`awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1`
     if [ "$GITHUB_ACTIONS" == 'true' ]; then
-        echo $keys | xargs -I % bash -ceu -o pipefail 'if [ -e "$%" ]; then rm -rf "$%" && echo "environment variable content removed: %"; fi'
+        echo "$keys" | xargs -I % bash -ceu -o pipefail 'if [ -e "$%" ]; then rm -rf "$%" && echo "environment variable content removed: %"; fi'
     fi
-    unset "$keys"
-    echo "environment variables removed: $keys"
+    echo "$keys" | xargs -I % bash -ceu -o pipefail 'unset % && echo "environment variable removed: %"'
 }
 
 assert_not_callable () {
