@@ -12,7 +12,10 @@ function Remove-Command {
         [ValidateNotNullOrEmpty()]
         [string]$name
     )
-    where.exe "$name" | ForEach-Object { Remove-Item "$_" }
+    where.exe "$name" | ForEach-Object {
+        Remove-Item "$_"
+        Write-Output "command removed: $_"
+    }
 }
 
 function Destroy-Environment {
@@ -27,11 +30,13 @@ function Destroy-Environment {
             if (Test-Path -Path "$envValue") {
                 try {
                     Remove-Item -Path "$envValue" -Force -Recurse
+                    Write-Output "environment variable content removed: $envValue"
                 }
                 catch {}
             }
         }
         Remove-Item -Path "$envPath"
+        Write-Output "environment variable removed: $envPath"
     }
 }
 

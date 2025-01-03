@@ -6,15 +6,16 @@ if [ "${CI:-}" != 'true' ]; then
 fi
 
 remove_command () {
-    which -a $1 | xargs rm
+    which -a $1 | xargs -I % bash -ceu -o pipefail 'rm % && echo "command removed: %"'
 }
 
 destroy_environment () {
     keys=`awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1`
     if [ "$GITHUB_ACTIONS" == 'true' ]; then
-        echo $keys | xargs -I % bash -c 'if [ -e "$%" ]; then echo "%"; fi' | rm -rf
+        echo $keys | xargs -I % bash -ceu -o pipefail 'if [ -e "$%" ]; then rm -rf "$%" && echo "environment variable content removed: %"; fi'
     fi
-    unset $keys
+    unset "$keys"
+    echo "environment variables removed: $keys"
 }
 
 assert_not_callable () {
