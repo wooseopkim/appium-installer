@@ -58,7 +58,7 @@ function Assert-Environment-Does-Not-Match {
     python
     appium
     choco
-'@.Split([Environment]::NewLine) | ForEach-Object {
+'@.Split("`n") | ForEach-Object {
     $name = $_.Trim()
     Remove-Command "$name"
     Assert-Not-Callable "$name"
@@ -68,7 +68,7 @@ function Assert-Environment-Does-Not-Match {
     JAVA
     ANDROID
     Chocolately
-'@.Split([Environment]::NewLine) | ForEach-Object {
+'@.Split("`n") | ForEach-Object {
     $pattern = $_.Trim()
     Unset-Environment "$pattern"
     Assert-Environment-Does-Not-Match "$pattern"
