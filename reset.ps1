@@ -4,8 +4,7 @@ $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
 
 if ($env:CI -ne 'true') {
-    echo 'not on CI'
-    exit 1
+    throw 'not on CI'
 }
 
 function Remove-Command {
@@ -35,7 +34,7 @@ function Assert-Not-Callable {
     catch {
         return
     }
-    throw
+    throw $(where.exe "$name")
 }
 
 function Assert-Environment-Does-Not-Match {
@@ -44,7 +43,7 @@ function Assert-Environment-Does-Not-Match {
         [string]$pattern
     )
     if (Test-Path -Path env:*$pattern*) {
-        throw
+        throw (Get-ChildItem env:*$pattern* -Name)
     }
 }
 
