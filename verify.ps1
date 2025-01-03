@@ -19,6 +19,7 @@ where.exe java
 echo '::endgroup::'
 
 echo '::group::sdkmanager'
+sdkmanager --list *> $null
 (sdkmanager --list) -split "`n" -join "`0" -replace "Available Packages.+" -split "`0"
 where.exe sdkmanager
 echo '::endgroup::'

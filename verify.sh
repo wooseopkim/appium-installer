@@ -16,6 +16,7 @@ whereis java
 echo '::endgroup::'
 
 echo '::group::sdkmanager'
+sdkmanager --list &> /dev/null
 sdkmanager --list | sed -e '/Available Packages/q'
 whereis sdkmanager
 echo '::endgroup::'
