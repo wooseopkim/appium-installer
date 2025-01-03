@@ -56,8 +56,8 @@ function Assert-Environment-Does-Not-Match {
     choco
 "@.Split([Environment]::NewLine) | ForEach-Object {
     $name = $_.Trim()
-    Remove-Command $name
-    Assert-Not-Callable $name
+    Remove-Command "$name"
+    Assert-Not-Callable "$name"
 }
 
 @"
@@ -66,6 +66,6 @@ function Assert-Environment-Does-Not-Match {
     Chocolately
 "@.Split([Environment]::NewLine) | ForEach-Object {
     $pattern = $_.Trim()
-    Unset-Environment $pattern
-    Assert-Environment-Does-Not-Match $pattern
+    Unset-Environment "$pattern"
+    Assert-Environment-Does-Not-Match "$pattern"
 }
