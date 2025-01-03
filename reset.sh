@@ -10,7 +10,7 @@ remove_command () {
 }
 
 destroy_environment () {
-    $keys=`awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1`
+    keys=`awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1`
     if [ "$GITHUB_ACTIONS" == 'true' ]; then
         echo $keys | xargs -I % bash -c 'if [ -e "$%" ]; then echo "%"; fi' | rm -rf
     fi
