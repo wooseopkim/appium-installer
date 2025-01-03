@@ -18,10 +18,10 @@ jobs:
             reset-environment: powershell .\reset.ps1
             install: powershell .\install.ps1
           - os: macos-13
-            reset-environment: sudo bash ./reset.sh
+            reset-environment: bash ./reset.sh
             install: bash ./install.sh
           - os: macos-latest
-            reset-environment: sudo bash ./reset.sh
+            reset-environment: bash ./reset.sh
             install: bash ./install.sh
     runs-on: ${{ matrix.os }}
     steps:
