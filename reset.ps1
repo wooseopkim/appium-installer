@@ -22,7 +22,7 @@ function Unset-Environment {
     Get-ChildItem env:*$pattern* -Name | ForEach-Object { [Environment]::SetEnvironmentVariable($_, $null, [EnvironmentVariableTarget]::Machine) }
 }
 
-function Ensure-Not-Callable {
+function Assert-Not-Callable {
     param (
         $name
     )
@@ -35,7 +35,7 @@ function Ensure-Not-Callable {
     throw
 }
 
-function Ensure-Environment-Empty {
+function Assert-Environment-Does-Not-Match {
     param (
         $pattern
     )
@@ -57,7 +57,7 @@ function Ensure-Environment-Empty {
 "@.Split([Environment]::NewLine) | ForEach-Object {
     $name = $_.Trim()
     Remove-Command $name
-    Ensure-Not-Callable $name
+    Assert-Not-Callable $name
 }
 
 @"
@@ -67,5 +67,5 @@ function Ensure-Environment-Empty {
 "@.Split([Environment]::NewLine) | ForEach-Object {
     $pattern = $_.Trim()
     Unset-Environment $pattern
-    Ensure-Environment-Empty $pattern
+    Assert-Environment-Does-Not-Match $pattern
 }

@@ -13,17 +13,17 @@ unset_environment () {
     unset `awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1`
 }
 
-ensure_not_callable () {
+assert_not_callable () {
     return $(which $1 | wc -l)
 }
 
-ensure_environment_empty () {
+assert_environment_does_not_match () {
     return $(awk 'BEGIN{for(v in ENVIRON) print v}' | grep $1 | wc -l)
 }
 
 while read name; do
     remove_command $name
-    ensure_not_callable $name
+    assert_not_callable $name
 done <<-EOF
     sdkmanager
     avdmanager
@@ -38,7 +38,7 @@ EOF
 
 while read pattern; do
     unset_environment $pattern
-    ensure_environment_empty $pattern
+    assert_environment_does_not_match $pattern
 done <<-EOF
     JAVA
     ANDROID
