@@ -16,12 +16,12 @@ whereis java
 echo '::endgroup::'
 
 echo '::group::sdkmanager'
-sdkmanager --list
+sdkmanager --list | sed -e '/Available Packages/q'
 whereis sdkmanager
 echo '::endgroup::'
 
 echo '::group::avdmanager'
-avdmanager list device
+avdmanager list avd -c
 whereis avdmanager
 echo '::endgroup::'
 

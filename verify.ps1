@@ -19,12 +19,12 @@ where.exe java
 echo '::endgroup::'
 
 echo '::group::sdkmanager'
-sdkmanager --list
+(sdkmanager --list) -split "`n" -join "`0" -replace "Available Packages.+" -split "`0"
 where.exe sdkmanager
 echo '::endgroup::'
 
 echo '::group::avdmanager'
-avdmanager list device
+avdmanager list avd -c
 where.exe avdmanager
 echo '::endgroup::'
 
