@@ -23,8 +23,9 @@ function Destroy-Environment {
     Get-ChildItem env:*$pattern* -Name | ForEach-Object {
         $envPath = "env:$_"
         if ($env:GITHUB_ACTIONS -eq 'true') {
-            if (Test-Path -Path "$envPath") {
-                Remove-Item -Path (Get-Item -Path "$envPath").Value -Force -Recurse
+            $envValue = (Get-Item -Path "$envPath").Value
+            if (Test-Path -Path "$envValue") {
+                Remove-Item -Path "$envValue" -Force -Recurse
             }
         }
         Remove-Item -Path "$envPath"
