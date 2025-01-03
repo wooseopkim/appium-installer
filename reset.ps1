@@ -26,15 +26,22 @@ function Ensure-Not-Callable {
     param (
         $name
     )
-    where.exe "$name" *> $null
-    -Not $?
+    try {
+        where.exe "$name" *> $null
+    }
+    catch {
+        return
+    }
+    throw
 }
 
 function Ensure-Environment-Empty {
     param (
         $pattern
     )
-    -Not (Test-Path -Path env:*$pattern*)
+    if (Test-Path -Path env:*$pattern*) {
+        throw
+    }
 }
 
 @"
